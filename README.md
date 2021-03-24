@@ -1,6 +1,6 @@
-# EmptyGit
+![](./EmptyGit.png)  
 
-Kotlin CLI tool to generate placeholder files in empty folders.  
+**EmptyGit** is a Kotlin CLI tool to generate placeholder files in empty folders.  
 Useful if you want to version control your directory structure even if they are empty.
 
 ## Installation
