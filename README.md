@@ -5,11 +5,11 @@ Useful if you want to version control your directory structure even if they are 
 
 ## Installation
 
-* Install [Gradle](https://gradle.org/) and [Kotlin](https://kotlinlang.org/).
-* Get the `EmptyGit.zip` file from [releases](https://github.com/Sharkaboi/EmptyGit/releases). 
-* Copy full absolute address to `.\build\install\EmptyGit\bin`.
+* Install [Kotlin](https://kotlinlang.org/) or Java to run JAR files.
+* Get the `EmptyGit.zip` file from [releases](https://github.com/Sharkaboi/EmptyGit/releases) and extract to a permanent location, preffarably to `C:\`.
+* Copy full absolute address of folder `.\bin`.
 * Add the address to System environment path variable.
-* Run `EmptyGit -h` to test (`refreshenv` is using PS).
+* Run `EmptyGit -h` to test (`refreshenv` if using PS).
 
 ## Commands
 - **Command is performed on current folder, so CD to directory you wish to add placeholders.**  
