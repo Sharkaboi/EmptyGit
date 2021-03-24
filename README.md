@@ -5,8 +5,8 @@ Useful if you want to version control your directory structure even if they are 
 
 ## Installation
 
-* Install Gradle and Kotlin.
-* Clone project into a permanent location, preferably `C:\\EmptyGit` for windows.
+* Install [Gradle](https://gradle.org/) and [Kotlin](https://kotlinlang.org/).
+* Get the `EmptyGit.zip` file from [releases](https://github.com/Sharkaboi/EmptyGit/releases). 
 * Copy full absolute address to `.\build\install\EmptyGit\bin`.
 * Add the address to System environment path variable.
 * Run `EmptyGit -h` to test (`refreshenv` is using PS).
@@ -38,7 +38,7 @@ Useful if you want to version control your directory structure even if they are 
     ```
   
 ## Build instructions
-- Install Gradle and Kotlin.
+- Install [Gradle](https://gradle.org/) and [Kotlin](https://kotlinlang.org/).
 - Clone project.
 - Open in Intellij and run gradle task `distrubution > installDist`   
   or run `gradle installDist`
