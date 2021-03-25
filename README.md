@@ -13,10 +13,11 @@ Useful if you want to version control your directory structure even if they are 
 
 ## Commands
 - **Command is performed on current folder, so CD to directory you wish to add placeholders.**  
-- For adding `readme.md` to every empty folder run :   
+- For adding `README.md` to every empty folder run :   
     ```
     EmptyGit readme
     ```
+  For lowercase `readme.md`, use `-l` or `--lower-case`.
 - For adding `.gitignore` to every empty folder run :   
     ```
     EmptyGit git-ignore
@@ -30,11 +31,14 @@ Useful if you want to version control your directory structure even if they are 
     ```
     EmptyGit readme -v
     EmptyGit readme --verbose
+    EmptyGit readme -vl
+    EmptyGit readme -v -l
     ```
 - For help in any section use `-h` or `--help` as so  
     ```
     EmptyGit -h
     EmptyGit --help
+    EmptyGit readme --help
     ```
   
 ## Build instructions

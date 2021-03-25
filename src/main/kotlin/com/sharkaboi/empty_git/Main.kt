@@ -12,6 +12,8 @@ class EmptyGit : CliktCommand(help = "Generate files in all empty folders inside
 
 class Readme : CliktCommand(help = "Create $FILE_NAME for every empty folder.") {
     private val verboseFlag by option("--verbose", "-v").flag(default = false)
+    private val lowerCaseFlag by option("--lower-case", "-l").flag(default = false)
+
     override fun run() {
         val currentDirectory = System.getProperty("user.dir")
         val dirAsFile = File(currentDirectory)
@@ -20,11 +22,12 @@ class Readme : CliktCommand(help = "Create $FILE_NAME for every empty folder.") 
         }
         dirAsFile.walk().forEach {
             if (it.isDirectory && it.isEmpty() && !it.absolutePath.contains(".git")) {
-                val isFileCreated: Boolean = File(it.absolutePath + File.separator + FILE_NAME).createNewFile()
+                val fileLocation = it.absolutePath + File.separator + if (lowerCaseFlag) FILE_NAME_SMALL else FILE_NAME
+                val isFileCreated: Boolean = File(fileLocation).createNewFile()
                 if (isFileCreated && verboseFlag) {
-                    echo("Adding $FILE_NAME to ${it.absolutePath}")
+                    echo("Adding ${if (lowerCaseFlag) FILE_NAME_SMALL else FILE_NAME} to ${it.absolutePath}")
                 } else if (!isFileCreated && verboseFlag) {
-                    echo("A $FILE_NAME already exists in ${it.absolutePath}")
+                    echo("A ${if (lowerCaseFlag) FILE_NAME_SMALL else FILE_NAME} already exists in ${it.absolutePath}")
                 }
             } else {
                 if (verboseFlag) {
@@ -36,7 +39,8 @@ class Readme : CliktCommand(help = "Create $FILE_NAME for every empty folder.") 
     }
 
     companion object {
-        const val FILE_NAME = "readme.md"
+        const val FILE_NAME = "README.md"
+        const val FILE_NAME_SMALL = "readme.md"
     }
 }
 
