@@ -1,18 +1,40 @@
 package com.sharkaboi.empty_git
 
 import com.github.ajalt.clikt.core.CliktCommand
+import com.github.ajalt.clikt.core.NoOpCliktCommand
+import com.github.ajalt.clikt.core.context
 import com.github.ajalt.clikt.core.subcommands
+import com.github.ajalt.clikt.output.Localization
 import com.github.ajalt.clikt.parameters.options.flag
 import com.github.ajalt.clikt.parameters.options.option
 import java.io.File
 
-class EmptyGit : CliktCommand(help = "Generate files in all empty folders inside the current directory.") {
-    override fun run() = Unit
+class EmptyGit : NoOpCliktCommand(
+    help = "Generate files in all empty folders inside the current directory.",
+    name = "EmptyGit"
+) {
+    init {
+        this.context {
+            helpOptionNames = setOf("-h", "--help")
+            localization = object : Localization {
+                override fun helpOptionMessage(): String {
+                    return "View additional info on any command."
+                }
+            }
+        }
+    }
 }
 
 class Readme : CliktCommand(help = "Create $FILE_NAME for every empty folder.") {
-    private val verboseFlag by option("--verbose", "-v").flag(default = false)
-    private val lowerCaseFlag by option("--lower-case", "-l").flag(default = false)
+    private val verboseFlag by option(
+        "--verbose",
+        "-v",
+        help = "For showing verbose log of operations."
+    ).flag(default = false)
+    private val lowerCaseFlag by option(
+        "--lower-case", "-l",
+        help = "For creating lowercase readme.md files."
+    ).flag(default = false)
 
     override fun run() {
         val currentDirectory = System.getProperty("user.dir")
@@ -45,7 +67,11 @@ class Readme : CliktCommand(help = "Create $FILE_NAME for every empty folder.") 
 }
 
 class GitKeep : CliktCommand(help = "Create $FILE_NAME for every empty folder.") {
-    private val verboseFlag by option("--verbose", "-v").flag(default = false)
+    private val verboseFlag by option(
+        "--verbose", "-v",
+        help = "For showing verbose log of operations."
+    ).flag(default = false)
+
     override fun run() {
         val currentDirectory = System.getProperty("user.dir")
         val dirAsFile = File(currentDirectory)
@@ -75,7 +101,11 @@ class GitKeep : CliktCommand(help = "Create $FILE_NAME for every empty folder.")
 }
 
 class GitIgnore : CliktCommand(help = "Create $FILE_NAME for every empty folder.") {
-    private val verboseFlag by option("--verbose", "-v").flag(default = false)
+    private val verboseFlag by option(
+        "--verbose", "-v",
+        help = "For showing verbose log of operations."
+    ).flag(default = false)
+
     override fun run() {
         val currentDirectory = System.getProperty("user.dir")
         val dirAsFile = File(currentDirectory)
