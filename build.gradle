@@ -6,10 +6,16 @@ plugins {
 mainClassName = 'com.sharkaboi.empty_git.MainKt'
 
 group 'com.sharkaboi'
-version '1.0-SNAPSHOT'
+version '1.0.1'
 
 repositories {
     mavenCentral()
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 allprojects {

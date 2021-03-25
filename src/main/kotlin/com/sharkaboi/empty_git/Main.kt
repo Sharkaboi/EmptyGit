@@ -7,6 +7,7 @@ import com.github.ajalt.clikt.core.subcommands
 import com.github.ajalt.clikt.output.Localization
 import com.github.ajalt.clikt.parameters.options.flag
 import com.github.ajalt.clikt.parameters.options.option
+import com.github.ajalt.clikt.parameters.options.versionOption
 import java.io.File
 
 class EmptyGit : NoOpCliktCommand(
@@ -22,6 +23,10 @@ class EmptyGit : NoOpCliktCommand(
                 }
             }
         }
+        this.versionOption(
+            version = "1.0.1",
+            help = "Show the current version of EmptyGit."
+        )
     }
 }
 
