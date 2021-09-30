@@ -24,7 +24,7 @@ class EmptyGit : NoOpCliktCommand(
             }
         }
         this.versionOption(
-            version = "1.0.1",
+            version = "1.0.2",
             help = "Show the current version of EmptyGit."
         )
     }
@@ -40,6 +40,10 @@ class Readme : CliktCommand(help = "Create $FILE_NAME for every empty folder.") 
         "--lower-case", "-l",
         help = "For creating lowercase readme.md files."
     ).flag(default = false)
+    private val folderNameFlag by option(
+        "--folder-name", "-f",
+        help = "For adding the current folder name to the readme as heading."
+    ).flag(default = false)
 
     override fun run() {
         val currentDirectory = System.getProperty("user.dir")
@@ -50,11 +54,15 @@ class Readme : CliktCommand(help = "Create $FILE_NAME for every empty folder.") 
         dirAsFile.walk().forEach {
             if (it.isDirectory && it.isEmpty() && !it.absolutePath.contains(".git")) {
                 val fileLocation = it.absolutePath + File.separator + if (lowerCaseFlag) FILE_NAME_SMALL else FILE_NAME
-                val isFileCreated: Boolean = File(fileLocation).createNewFile()
+                val file = File(fileLocation)
+                val isFileCreated: Boolean = file.createNewFile()
                 if (isFileCreated && verboseFlag) {
                     echo("Adding ${if (lowerCaseFlag) FILE_NAME_SMALL else FILE_NAME} to ${it.absolutePath}")
                 } else if (!isFileCreated && verboseFlag) {
                     echo("A ${if (lowerCaseFlag) FILE_NAME_SMALL else FILE_NAME} already exists in ${it.absolutePath}")
+                }
+                if(folderNameFlag){
+                    file.writeText("# ${it.name}")
                 }
             } else {
                 if (verboseFlag) {
